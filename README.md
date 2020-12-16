@@ -10,3 +10,4 @@
 ### EX7: 物件導向設計基礎練習
 ### EX8: String應用與text I/O練習
 ### EX9: 物件導向(Object-Oriented)進階練習
+### EX10: 繼承(inheritance)與多形(polymorphism)練習
