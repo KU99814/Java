@@ -24,3 +24,4 @@
 ### EX22: Java Collections Framework使用練習
 ### EX23: 演算法
 ### EX24: Lists Stack Queue練習
+### EX25: Binary tree,heap,iterator,priority queue練習
