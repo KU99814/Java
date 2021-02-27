@@ -6,48 +6,48 @@ public class EX26_5
 {
  public static void main(String args[])
   {
-   //¤ñ¸û¥Îarray
+   //æ¯”è¼ƒç”¨array
    Integer[] list1 = {2,3,2,5,6,1,-2,3,14,12};
    String[] list2 = {"B","F","E","X","A","E","H","Y"};
 
    Circle [] list3 = new Circle[10];
 
-   //³Ğ«Ø¶êª«¥ó
+   //å‰µå»ºåœ“ç‰©ä»¶
    for(int i=0;i<list3.length;i++)
     list3[i] = new Circle((int)(Math.random()*10));
 
-   //Åã¥Ü±Æ§Ç«elist1
+   //é¡¯ç¤ºæ’åºå‰list1
    System.out.print("\nThe list1 before sort: ");
    for(int i=0;i<list1.length;i++)
     System.out.print(list1[i]+" ");
    
-   heapSort(list1);//±Æ§Çlist1
+   heapSort(list1);//æ’åºlist1
 
-   //Åã¥Ü±Æ§Ç«álist1
+   //é¡¯ç¤ºæ’åºå¾Œlist1
    System.out.print("\nThe list1 after sort: ");   
    for(int i=0;i<list1.length;i++)
     System.out.print(list1[i]+" ");
 
-   //Åã¥Ü±Æ§Ç«elist2
+   //é¡¯ç¤ºæ’åºå‰list2
    System.out.print("\nThe list2 before sort: ");
    for(int i=0;i<list2.length;i++)
     System.out.print(list2[i]+" ");
 
-   heapSort(list2);//±Æ§Çlist2
+   heapSort(list2);//æ’åºlist2
 
-   //Åã¥Ü±Æ§Ç«álist2
+   //é¡¯ç¤ºæ’åºå¾Œlist2
    System.out.print("\nThe list2 after sort: ");
    for(int i=0;i<list2.length;i++)
     System.out.print(list2[i]+" ");
 
-   //±Æ§Ç«elist3
+   //æ’åºå‰list3
    System.out.print("\nThe list3 before sort: ");
    for(int i=0;i<list3.length;i++)
     System.out.print(list3[i].getRadius()+" ");
 
-   heapSort(list3,new GeometricObjectComparator());//±Æ§Ç
+   heapSort(list3,new GeometricObjectComparator());//æ’åº
 
-   //±Æ§Ç«álist3
+   //æ’åºå¾Œlist3
    System.out.print("\nThe list3 after sort: ");
    for(int i=0;i<list3.length;i++)
     System.out.print(list3[i].getRadius()+" ");
@@ -70,11 +70,11 @@ public class EX26_5
   {
    Heap<E> heap = new Heap<E>();//heap
 
-   //±Nelement©ñ¤Jheap±Æ§Ç
+   //å°‡elementæ”¾å…¥heapæ’åº
    for(int i=0;i<list.length;i++)
     heap.add(list[i]);
 
-   //±Nelement«ö¶¶§Ç©ñ¦^list
+   //å°‡elementæŒ‰é †åºæ”¾å›list
    for(int i=list.length-1;i>=0;i--)
     list[i] = (E)(heap.remove());
   }
