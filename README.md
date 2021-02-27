@@ -25,3 +25,4 @@
 ### EX23: 演算法
 ### EX24: Lists Stack Queue練習
 ### EX25: Binary tree,heap,iterator,priority queue練習
+### EX26: Sorted練習
