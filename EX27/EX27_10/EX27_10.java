@@ -6,12 +6,12 @@ public class EX27_10
 {
  public static void main(String args[])throws IOException,ClassNotFoundException
   {
-   ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("EX27_10.dat"));//¿é¥XÀÉ®×ªºstream
+   ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("EX27_10.dat"));//è¼¸å‡ºæª”æ¡ˆçš„stream
    
-   TailModel16 model = new TailModel16();//³Ð«Ø
+   TailModel16 model = new TailModel16();//å‰µå»º
 
    try{
-    output.writeObject(model);//¿é¥Xobject
+    output.writeObject(model);//è¼¸å‡ºobject
    }
    catch(IOException ex)
     {
