@@ -3,8 +3,8 @@ import java.io.*;
 
 public class Edge implements Serializable
 {
- public int u;//ÂI1
- public int v;//ÂI2
+ public int u;//é»ž1
+ public int v;//é»ž2
 
  //contructor
  public Edge(int u,int v)
