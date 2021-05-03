@@ -4,11 +4,11 @@ public class EX27_12
 {
  public static void main(String[] args)
   {
-   //´ú¸Õvertex
+   //æ¸¬è©¦vertex
    String[] vertices = {"Seattle","San Francisco","Losa Angles",
                         "Denver","Kansas City","Chicago","Boston","New York",
                         "Atlanta","Miami","Dallas","Houston"};
-   //´ú¸Õedge   
+   //æ¸¬è©¦edge   
    int[][] edges = {{0,1},{0,3},{0,5},
                     {1,0},{1,2},{1,3},
                     {2,1},{2,3},{2,4},{2,10},
@@ -22,27 +22,27 @@ public class EX27_12
                     {10,2},{10,4},{10,8},{10,11},
                     {11,8},{11,9},{11,10}};
    
-   Graph graph1 = new UnweightedGraph(edges,vertices);//³Ð«Øgraph object
+   Graph graph1 = new UnweightedGraph(edges,vertices);//å‰µå»ºgraph object
    
-   graph1.printAdjacencyMatrix();//Åã¥Ü¬Û¾FÃö«Y°}¦C
+   graph1.printAdjacencyMatrix();//é¡¯ç¤ºç›¸é„°é—œä¿‚é™£åˆ—
    System.out.println();
 
-   if(graph1.add("123"))//¥[¤Jvertex
-    graph1.printAdjacencyMatrix();//Åã¥Ü
-
-   System.out.println();
-
-   if(graph1.remove("Denver"))//²¾°£vertex
-    graph1.printAdjacencyMatrix();//Åã¥Ü
+   if(graph1.add("123"))//åŠ å…¥vertex
+    graph1.printAdjacencyMatrix();//é¡¯ç¤º
 
    System.out.println();
 
-   if(graph1.add(new Edge(0,11)))//¥[¤Jedge
-    graph1.printAdjacencyMatrix();//Åã¥Ü
+   if(graph1.remove("Denver"))//ç§»é™¤vertex
+    graph1.printAdjacencyMatrix();//é¡¯ç¤º
 
    System.out.println();
 
-   if(graph1.remove(new Edge(0,1)))//²¾°£edge
-    graph1.printAdjacencyMatrix();//Åã¥Ü
+   if(graph1.add(new Edge(0,11)))//åŠ å…¥edge
+    graph1.printAdjacencyMatrix();//é¡¯ç¤º
+
+   System.out.println();
+
+   if(graph1.remove(new Edge(0,1)))//ç§»é™¤edge
+    graph1.printAdjacencyMatrix();//é¡¯ç¤º
   }
 }
