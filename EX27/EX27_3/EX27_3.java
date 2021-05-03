@@ -4,12 +4,12 @@ public class EX27_3
 {
  public static void main(String args[])
   {
-   //´ú¸Õvertices
+   //æ¸¬è©¦vertices
    String[] vertices = {"Seattle","San Francisco","Losa Angles",
                         "Denver","Kansas City","Chicago","Boston","New York",
                         "Atlanta","Miami","Dallas","Houston"};
    
-   //´ú¸Õedges
+   //æ¸¬è©¦edges
    int[][] edges = {{0,1},{0,3},{0,5},
                     {1,0},{1,2},{1,3},
                     {2,1},{2,3},{2,4},{2,10},
@@ -23,11 +23,11 @@ public class EX27_3
                     {10,2},{10,4},{10,8},{10,11},
                     {11,8},{11,9},{11,10}};
 
-   Graph graph = new UnweightedGraph(edges,vertices);//³Ð«Øgraph object
+   Graph graph = new UnweightedGraph(edges,vertices);//å‰µå»ºgraph object
 
-   java.util.List<Integer> searchOrders = graph.getPath(0,4);//ÂI¨ìÂI¸ô®|
+   java.util.List<Integer> searchOrders = graph.getPath(0,4);//é»žåˆ°é»žè·¯å¾‘
 
-   //Åã¥Ü
+   //é¡¯ç¤º
    for(int i=0;i<searchOrders.size();i++)
     System.out.println(graph.getVertex(searchOrders.get(i))+" ");
   }
