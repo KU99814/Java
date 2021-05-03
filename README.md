@@ -26,3 +26,4 @@
 ### EX24: Lists Stack Queue練習
 ### EX25: Binary tree,heap,iterator,priority queue練習
 ### EX26: Sorted練習
+### EX27: 圖學應用
