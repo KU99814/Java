@@ -4,12 +4,12 @@ public class EX28_2
 {
  public static void main(String[] args)
   {
-   //´ú¸Õ¥Îvertices 1
+   //æ¸¬è©¦ç”¨vertices 1
    String[] vertices = {"Seattle","San Francisco","Los Angeles",
                     "Denver","Kansas City","Chicago","Boston","New York",
                    "Atlanta","Miami","Dallas","Houston"};
    
-   //´ú¸Õ¥Îedge 1
+   //æ¸¬è©¦ç”¨edge 1
    int[][] edges = {
        {0,1,807},{0,3,1331},{0,5,2097},
        {1,0,807},{1,2,381},{1,3,1267},
@@ -25,17 +25,17 @@ public class EX28_2
        {11,8,810},{11,9,1187},{11,10,239}
       };
     
-   WeightedGraph graph1 = new WeightedGraph(edges,vertices);//³Ð«Øgraph1
+   WeightedGraph graph1 = new WeightedGraph(edges,vertices);//å‰µå»ºgraph1
    WeightedGraph.MST tree1 = graph1.getMinimumSpanningTree();//MST
    
    
-   //Åã¥ÜMST
+   //é¡¯ç¤ºMST
    System.out.println("Total weight is "+tree1.getTotalWeight());   
    tree1.printTree();
 
    System.out.println();
     
-   //´ú¸Õ¥Îedge 2
+   //æ¸¬è©¦ç”¨edge 2
    edges = new int[][]{
        {0,1,7},{0,3,9},
        {1,0,7},{1,2,9},{1,3,7},
@@ -44,10 +44,10 @@ public class EX28_2
        {4,2,7},{4,3,9}
       }; 
 
-   WeightedGraph graph2 = new WeightedGraph(edges,5);//³Ð«Øgraph2
+   WeightedGraph graph2 = new WeightedGraph(edges,5);//å‰µå»ºgraph2
    WeightedGraph.MST tree2 = graph2.getMinimumSpanningTree(1);//MST
 
-   //Åã¥ÜMST
+   //é¡¯ç¤ºMST
    System.out.println("Tree2:Total weight is "+tree2.getTotalWeight());
    tree2.printTree();
   }
