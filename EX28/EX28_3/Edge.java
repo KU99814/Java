@@ -8,7 +8,7 @@ public class Edge
  //constructor
  public Edge(int u,int v)
   {
-   //¨ú±overtex 
+   //取得vertex
    this.u = u;
    this.v = v;
   }
