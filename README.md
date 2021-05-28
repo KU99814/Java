@@ -27,3 +27,4 @@
 ### EX25: Binary tree,heap,iterator,priority queue練習
 ### EX26: Sorted練習
 ### EX27: 圖學應用
+### EX28: 有值圖應用
