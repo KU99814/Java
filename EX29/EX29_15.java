@@ -1,4 +1,4 @@
-//split a file with a GUI and multithread
+//Split a file with progress bar
 
 import java.io.*;
 import java.awt.*;
@@ -8,39 +8,39 @@ import java.beans.*;
 
 public class EX29_15 extends JFrame
 {
- private JTextArea jta = new JTextArea();//Åã¥Ü»¡©ú¤å¥»
+ private JTextArea jta = new JTextArea();//é¡¯ç¤ºèªªæ˜æ–‡æœ¬
 
- private JTextField jtfChooseFile = new JTextField(10);//¿é¤JÀÉ®×¸ô®|
- private JTextField jtfNumberOfPiece = new JTextField(10);//¿é¤J·Q¤À³Î¤ù¬q
+ private JTextField jtfChooseFile = new JTextField(10);//è¼¸å…¥æª”æ¡ˆè·¯å¾‘
+ private JTextField jtfNumberOfPiece = new JTextField(10);//è¼¸å…¥æƒ³åˆ†å‰²ç‰‡æ®µ
 
- private JButton jbBrowse = new JButton("Browse");//ÂsÄıÀÉ®×
- private JButton jbStart = new JButton("Start"); //¶}©l¤À³Î
+ private JButton jbBrowse = new JButton("Browse");//ç€è¦½æª”æ¡ˆ
+ private JButton jbStart = new JButton("Start"); //é–‹å§‹åˆ†å‰²
  
  private JProgressBar jpb = new JProgressBar();
  
  public EX29_15()
   {
    String text = "If you split a file named temp.txt into 3 smaller files,the\n"+
-                 " three smaller files are temp.txt.1 ,temp.txt.2,temp.txt.3.";//»¡©ú¤å¥»
+                 " three smaller files are temp.txt.1 ,temp.txt.2,temp.txt.3.";//èªªæ˜æ–‡æœ¬
    jta.setText(text);
-   jta.setEditable(false);//³]¬°¤£¥i½s¿è
+   jta.setEditable(false);//è¨­ç‚ºä¸å¯ç·¨è¼¯
 
-   //»¡©úpanel
+   //èªªæ˜panel
    JPanel p1 = new JPanel(new BorderLayout());
    p1.add(jta,BorderLayout.CENTER);
 
-   //¿é¤JÀÉ®×panel
+   //è¼¸å…¥æª”æ¡ˆpanel
    JPanel p2_1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
    p2_1.add(new JLabel("Enter or choose a file:"));
    p2_1.add(jtfChooseFile);
    p2_1.add(jbBrowse);
 
-   //¤À³Î¥÷¼Æpanel   
+   //åˆ†å‰²ä»½æ•¸panel   
    JPanel p2_2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
    p2_1.add(new JLabel("Specify the number of smaller files:"));
    p2_1.add(jtfNumberOfPiece);
 
-   //¾ã¦XÀÉ®×¾Ş§@
+   //æ•´åˆæª”æ¡ˆæ“ä½œ
    JPanel p3 = new JPanel(new GridLayout(2,1));
    p3.add(jbStart);
    p3.add(jpb);
@@ -49,7 +49,7 @@ public class EX29_15 extends JFrame
    jpb.setValue(0);
    jpb.setMaximum(100);
 
-   //¾ã¦X¤¶­±
+   //æ•´åˆä»‹é¢
    setLayout(new GridLayout(4,1));
    add(p1);
    add(p2_1);
@@ -57,28 +57,28 @@ public class EX29_15 extends JFrame
    add(p3);
    //add();
 
-   //¥[¤J«ö¶s°Ê§@ ÀÉ®×ÂsÄı
+   //åŠ å…¥æŒ‰éˆ•å‹•ä½œ æª”æ¡ˆç€è¦½
    jbBrowse.addActionListener(new ActionListener(){
     public void actionPerformed(ActionEvent e){
-     JFileChooser fileChooser = new JFileChooser();//¥ÎÀÉ®×ÂsÄı¤¶­±¨ú±oÀÉ®×
+     JFileChooser fileChooser = new JFileChooser();//ç”¨æª”æ¡ˆç€è¦½ä»‹é¢å–å¾—æª”æ¡ˆ
      if(fileChooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)
       {
        File file = fileChooser.getSelectedFile();
      
-       jtfChooseFile.setText(file.getName());//±N¸ô®|Åã¥Ü¦bÄæ¦ì
+       jtfChooseFile.setText(file.getName());//å°‡è·¯å¾‘é¡¯ç¤ºåœ¨æ¬„ä½
       }
     }
    });
 
-   //¶}©l¤À³Î ¤U¦PEX19_10
+   //é–‹å§‹åˆ†å‰² ä¸‹åŒEX19_10
    jbStart.addActionListener(new ActionListener(){
     public void actionPerformed(ActionEvent e){
 
-     int numberOfPiece = Integer.parseInt(jtfNumberOfPiece.getText())-1;//¤À³Î¥÷¼Æ
-     SpiltTask task = new SpiltTask(numberOfPiece,jtfChooseFile.getText());//³Ğ«Øthread
+     int numberOfPiece = Integer.parseInt(jtfNumberOfPiece.getText())-1;//åˆ†å‰²ä»½æ•¸
+     SpiltTask task = new SpiltTask(numberOfPiece,jtfChooseFile.getText());//å‰µå»ºthread
      
      
-     //³]©wprogressÅÜ¤Æ
+     //è¨­å®šprogressè®ŠåŒ–
      task.addPropertyChangeListener(new PropertyChangeListener(){
       public void propertyChange(PropertyChangeEvent e){
        if("progress".equals(e.getPropertyName())){
@@ -87,16 +87,16 @@ public class EX29_15 extends JFrame
       }
      });
 
-     task.execute();//°õ¦æ
+     task.execute();//åŸ·è¡Œ
     }
    });   
   }
 
- //¤À³ÎÀÉ®×task
+ //åˆ†å‰²æª”æ¡ˆtask
  class SpiltTask extends SwingWorker<Integer,Integer>
   {
-   private int part;//¤À³Î¥÷¼Æ
-   private String fileName;//ÀÉ®×¦WºÙ
+   private int part;//åˆ†å‰²ä»½æ•¸
+   private String fileName;//æª”æ¡ˆåç¨±
 
    //constructor
    public SpiltTask(int part,String fileName)
@@ -107,28 +107,28 @@ public class EX29_15 extends JFrame
 
    protected Integer doInBackground() throws Exception
     {
-     //Åª¨úÀÉ®×
+     //è®€å–æª”æ¡ˆ
      RandomAccessFile raf = new RandomAccessFile(fileName,"rw");
 
-     long size = raf.length()/part;//¤À³Î«áªø«×
+     long size = raf.length()/part;//åˆ†å‰²å¾Œé•·åº¦
 
      part++;
 
-     //¤£º¡ªø«×ªº³B¸m
+     //ä¸æ»¿é•·åº¦çš„è™•ç½®
       if(raf.length()%(part-1) == 0)
        {
         size = raf.length()/(part);
        }
    
-      int count = 1; //­p¼Æ¤À¤F´X¥÷
+      int count = 1; //è¨ˆæ•¸åˆ†äº†å¹¾ä»½
       
       long length = raf.length();
-      long filePercent = 0;//¥Ø«e¶i«×
+      long filePercent = 0;//ç›®å‰é€²åº¦
       while(true)
        {
-        //Àx¦s¤À³ÎªºÀÉ®×
+        //å„²å­˜åˆ†å‰²çš„æª”æ¡ˆ
         RandomAccessFile out = new RandomAccessFile(fileName+"."+count,"rw");
-        //¦pªGªø«×¤j©ó¤À³Îªø«× «öªø«×¤À³Î
+        //å¦‚æœé•·åº¦å¤§æ–¼åˆ†å‰²é•·åº¦ æŒ‰é•·åº¦åˆ†å‰²
         if(raf.length() - raf.getFilePointer()<=size)
          {
           for(long i= raf.getFilePointer();i<raf.length();i++)
@@ -142,7 +142,7 @@ public class EX29_15 extends JFrame
           out.close();
           break;
          }
-        else//¤p©ó¤À³Îªø«× 
+        else//å°æ–¼åˆ†å‰²é•·åº¦ 
          {
           for(long i=0;i<size;i++)
            {
@@ -154,7 +154,7 @@ public class EX29_15 extends JFrame
            }
           if(count==part)
            {
-            //±N³Ñ¤Uªº¾ã¦X¨ì³Ì«á¤@³¡¤À
+            //å°‡å‰©ä¸‹çš„æ•´åˆåˆ°æœ€å¾Œä¸€éƒ¨åˆ†
             for(long i=raf.getFilePointer();i<raf.length();i++)
              {
               out.write(raf.read());
@@ -181,13 +181,13 @@ public class EX29_15 extends JFrame
   {
    SwingUtilities.invokeLater(new Runnable(){
     public void run(){
-     EX29_15 frame = new EX29_15();//«Å§iµøµ¡
-     frame.pack();//¾A¦X¤j¤p
-     frame.setTitle("EX29_15");//¼ĞÃD
-     frame.setSize(380,300);//¤j¤p
-     frame.setLocationRelativeTo(null);//¬Û¹ï¦ì¸m
-     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Ãö³¬°Ê§@
-     frame.setVisible(true);//Åã¥Ü
+     EX29_15 frame = new EX29_15();//å®£å‘Šè¦–çª—
+     frame.pack();//é©åˆå¤§å°
+     frame.setTitle("EX29_15");//æ¨™é¡Œ
+     frame.setSize(380,300);//å¤§å°
+     frame.setLocationRelativeTo(null);//ç›¸å°ä½ç½®
+     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//é—œé–‰å‹•ä½œ
+     frame.setVisible(true);//é¡¯ç¤º
     }
    });
   }
