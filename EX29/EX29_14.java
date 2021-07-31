@@ -1,3 +1,5 @@
+//Copying file with progress bar
+
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -7,68 +9,68 @@ import java.io.*;
 
 public class EX29_14 extends JFrame
 {
- private JProgressBar jpb = new JProgressBar();//¶i«×±ø
- private JTextField jtfInput = new JTextField(50);//¿é¤J­n½Æ»sÀÉ®×¸ô®|
- private JTextField jtfOutput = new JTextField(50);//¿é¥X­n½Æ»sÀÉ®×¸ô®|
- private JButton jbtCopy = new JButton("Copy");//¶}©l½Æ»s«ö¶s
+ private JProgressBar jpb = new JProgressBar();//é€²åº¦æ¢
+ private JTextField jtfInput = new JTextField(50);//è¼¸å…¥è¦è¤‡è£½æª”æ¡ˆè·¯å¾‘
+ private JTextField jtfOutput = new JTextField(50);//è¼¸å‡ºè¦è¤‡è£½æª”æ¡ˆè·¯å¾‘
+ private JButton jbtCopy = new JButton("Copy");//é–‹å§‹è¤‡è£½æŒ‰éˆ•
 
- static boolean start = false;//§PÂ_½Æ»s¬O§_¶}©l Á×§K­«½Æ½Æ»s
+ static boolean start = false;//åˆ¤æ–·è¤‡è£½æ˜¯å¦é–‹å§‹ é¿å…é‡è¤‡è¤‡è£½
 
  //constructor
  public EX29_14()
   {
-   //¶i«×±ø³]©w
-   jpb.setStringPainted(true);//Ã¸¥X¦Ê¤À¤ñ
-   jpb.setValue(0);//°_©l³]¬°¹s
-   jpb.setMaximum(100);//³Ì¤j­È³]¬°100
+   //é€²åº¦æ¢è¨­å®š
+   jpb.setStringPainted(true);//ç¹ªå‡ºç™¾åˆ†æ¯”
+   jpb.setValue(0);//èµ·å§‹è¨­ç‚ºé›¶
+   jpb.setMaximum(100);//æœ€å¤§å€¼è¨­ç‚º100
    
-   //¿é¤JÀÉ®×ªºpanel
+   //è¼¸å…¥æª”æ¡ˆçš„panel
    JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-   p1.setBorder(BorderFactory.createTitledBorder("From"));//®Ø½u
-   p1.add(jtfInput);//¥[¤Jtextfield
+   p1.setBorder(BorderFactory.createTitledBorder("From"));//æ¡†ç·š
+   p1.add(jtfInput);//åŠ å…¥textfield
 
-   //¿é¥XÀÉ®×ªºpanel
+   //è¼¸å‡ºæª”æ¡ˆçš„panel
    JPanel p2 = new JPanel();
    p2.add(jtfOutput);
-   p2.setBorder(BorderFactory.createTitledBorder("To"));//®Ø½u
+   p2.setBorder(BorderFactory.createTitledBorder("To"));//æ¡†ç·š
 
-   //«ö¶spanel
+   //æŒ‰éˆ•panel
    JPanel p3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
    p3.add(jbtCopy);
 
-   //©ñ¤Jframe
+   //æ”¾å…¥frame
    setLayout(new GridLayout(4,1,5,5));
    add(jpb);
    add(p1);
    add(p2);
    add(p3);
 
-   //«ö¶s°Ê§@
+   //æŒ‰éˆ•å‹•ä½œ
    jbtCopy.addActionListener(new ActionListener(){
     public void actionPerformed(ActionEvent e)
      {
-      //­YÁÙ¨S¶}©l ¶}©l½Æ»s
+      //è‹¥é‚„æ²’é–‹å§‹ é–‹å§‹è¤‡è£½
       if(!start)
        {
-        //¨ú±oÀÉ®×¸ô®|
+        //å–å¾—æª”æ¡ˆè·¯å¾‘
         String input = jtfInput.getText();
         String output = jtfOutput.getText();
 
-        //ª¬ºA³]¬°¶}©l
+        //ç‹€æ…‹è¨­ç‚ºé–‹å§‹
         start = true;
-        CopyTask task = new CopyTask(input,output);//³Ğ«Øthread task
+        CopyTask task = new CopyTask(input,output);//å‰µå»ºthread task
 
-        //·íª¬ºAÅÜ°Ê®É Åı¶i«×±ø¯à°÷Åã¥Ü¶i«×        
+        //ç•¶ç‹€æ…‹è®Šå‹•æ™‚ è®“é€²åº¦æ¢èƒ½å¤ é¡¯ç¤ºé€²åº¦        
         task.addPropertyChangeListener(new PropertyChangeListener(){
          public void propertyChange(PropertyChangeEvent e){
           if("progress".equals(e.getPropertyName()))
            {
-            jpb.setValue((Integer)e.getNewValue());//Åã¥Ü¶i«×
+            jpb.setValue((Integer)e.getNewValue());//é¡¯ç¤ºé€²åº¦
            }
          }
         });
 
-        task.execute();//¶}©l°õ¦æ
+        task.execute();//é–‹å§‹åŸ·è¡Œ
        }
      }
     });
@@ -76,18 +78,18 @@ public class EX29_14 extends JFrame
 
  static class CopyTask extends SwingWorker<Integer,Integer>
   {
-   //ÀÉ®×¸ô®|
-   private String input;//¿é¤J
-   private String output;//¿é¥X
+   //æª”æ¡ˆè·¯å¾‘
+   private String input;//è¼¸å…¥
+   private String output;//è¼¸å‡º
 
    //file stream
-   private BufferedInputStream fileInput;//¿é¤J
-   private BufferedOutputStream fileOutput;//¿é¥X
+   private BufferedInputStream fileInput;//è¼¸å…¥
+   private BufferedOutputStream fileOutput;//è¼¸å‡º
 
    //constructor
    public CopyTask(String input,String output)
     {
-     //¨ú±oÀÉ®×¸ô®|
+     //å–å¾—æª”æ¡ˆè·¯å¾‘
      this.input = input;
      this.output = output;
     }
@@ -97,46 +99,46 @@ public class EX29_14 extends JFrame
      File iFile = new File(input);
      File oFile = new File(output);
  
-     //­YÀÉ®×¤£¦s¦b Åã¥Ü¿ù»~¸ê°TÄæ
+     //è‹¥æª”æ¡ˆä¸å­˜åœ¨ é¡¯ç¤ºéŒ¯èª¤è³‡è¨Šæ¬„
      if(!iFile.exists())
       {
-       JOptionPane.showMessageDialog(null,"ÀÉ®×¤£¦s¦b",
-                                  "¿ù»~", JOptionPane.ERROR_MESSAGE);
+       JOptionPane.showMessageDialog(null,"æª”æ¡ˆä¸å­˜åœ¨",
+                                  "éŒ¯èª¤", JOptionPane.ERROR_MESSAGE);
        start = false;
        return 0;
       }
 
-     //«Ø¥ßIO stream
+     //å»ºç«‹IO stream
      fileInput = new BufferedInputStream(new FileInputStream(iFile));
      fileOutput = new BufferedOutputStream(new FileOutputStream(oFile));
          
-     int max = fileInput.available();//ÀÉ®×¤j¤p(byte)
-     int count = 0;//¥Ø«e½Æ»s¤j¤p(byte)
+     int max = fileInput.available();//æª”æ¡ˆå¤§å°(byte)
+     int count = 0;//ç›®å‰è¤‡è£½å¤§å°(byte)
 
      int r;
      
-     //½Æ»s¸ê®Æ
+     //è¤‡è£½è³‡æ–™
      while((r=fileInput.read())!=-1)
       {
-       fileOutput.write((byte)r);//±NinputÀÉ®×Åª¨ú ¼g¤JoutputÀÉ®×
-       count++;//¥Ø«ebyte¼Æ
-       setProgress(100*count/max);//Åã¥Ü¦Ê¤À¤ñ
+       fileOutput.write((byte)r);//å°‡inputæª”æ¡ˆè®€å– å¯«å…¥outputæª”æ¡ˆ
+       count++;//ç›®å‰byteæ•¸
+       setProgress(100*count/max);//é¡¯ç¤ºç™¾åˆ†æ¯”
       }
 
-     //Åª¨úµ²§ô«áÃö³¬ÀÉ®×
+     //è®€å–çµæŸå¾Œé—œé–‰æª”æ¡ˆ
      fileInput.close();
      fileOutput.close();
      
      return 0;  
     }
    
-   //§¹¦¨«á°Ê§@
+   //å®Œæˆå¾Œå‹•ä½œ
    protected void done()
     {
      if(start)
       {
-       //Åã¥Ü¸ê°TÄæ ªí¥Ü§¹¦¨
-       JOptionPane.showMessageDialog(null,"½Æ»s§¹¦¨","°T®§",JOptionPane.INFORMATION_MESSAGE);
+       //é¡¯ç¤ºè³‡è¨Šæ¬„ è¡¨ç¤ºå®Œæˆ
+       JOptionPane.showMessageDialog(null,"è¤‡è£½å®Œæˆ","è¨Šæ¯",JOptionPane.INFORMATION_MESSAGE);
        start = false;
       }
     } 
@@ -147,12 +149,12 @@ public class EX29_14 extends JFrame
   {
    SwingUtilities.invokeLater(new Runnable(){
     public void run(){
-     EX29_14 frame = new EX29_14();//frameª«¥ó
-     frame.setTitle("EX29_14");//¼ĞÃD
-     frame.setSize(600,280);//¤j¤p
-     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Ãö³¬°Ê§@
-     frame.setLocationRelativeTo(null);//¬Û¹ï°Ê§@
-     frame.setVisible(true);//Åã¥Ü
+     EX29_14 frame = new EX29_14();//frameç‰©ä»¶
+     frame.setTitle("EX29_14");//æ¨™é¡Œ
+     frame.setSize(600,280);//å¤§å°
+     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//é—œé–‰å‹•ä½œ
+     frame.setLocationRelativeTo(null);//ç›¸å°å‹•ä½œ
+     frame.setVisible(true);//é¡¯ç¤º
     }
    });
   }
