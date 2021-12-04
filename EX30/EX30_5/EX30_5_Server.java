@@ -9,7 +9,7 @@ public class EX30_5_Server
 {
  public static void main(String args[])
   {
-   new EX30_5_Server();//«Å§iserver
+   new EX30_5_Server();//å®£å‘Šserver
   }
 
  public EX30_5_Server()
@@ -23,13 +23,13 @@ public class EX30_5_Server
      {
       Socket socket = serverSocket.accept();//client socket
       
-      //Åª¨úÀÉ®×
+      //è®€å–æª”æ¡ˆ
       Scanner inputFromFile = new Scanner(new FileInputStream("EX30_5.txt"));
       
-      //¶Ç°eÀÉ®×¨ìclient
+      //å‚³é€æª”æ¡ˆåˆ°client
       DataOutputStream outputToClient = new DataOutputStream(socket.getOutputStream());
 
-      //¨Ì§ÇÅª¨ú¶Ç°e
+      //ä¾åºè®€å–å‚³é€
       for(int i=0;i<5;i++)
        {
         outputToClient.writeUTF(inputFromFile.nextLine());
@@ -38,7 +38,7 @@ public class EX30_5_Server
         outputToClient.writeDouble(Double.parseDouble(inputFromFile.nextLine()));
        }
       
-      //µ²§ôÃö³¬ÀÉ®×
+      //çµæŸé—œé–‰æª”æ¡ˆ
       inputFromFile.close();
       outputToClient.close();
      }
