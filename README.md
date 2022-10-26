@@ -31,3 +31,4 @@
 ### EX29: 多執行緒
 ### EX30: 網路
 ### EX31: 國際化
+### EX32: javaBeans and Bean Events
